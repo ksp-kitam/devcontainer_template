@@ -6,13 +6,27 @@
 
 一方で、開発者個人のローカル環境に依存する部分を分離・拡張できるように以下の仕組みで設計されています。
 
-*   **共通構成 (`docker-compose.yml`, `init.sh`)**: チーム全員で利用するベース環境。
-*   **個人構成 (`docker-compose.local.yml`, `local-init.sh`)**: 個人の AI ツール設定やボリュームマウント。
+- **共通構成 (`docker-compose.yml`, `init.sh`)：**
+
+    チーム全員で利用するベース環境。
+  
+- **個人構成 (`docker-compose.local.yml`, `local-init.sh`)：**
+
+    個人の AI ツール設定やボリュームマウント。
 
 ## 📁 ディレクトリ構成
 
-*   **`Claude Code/`**: Claude Code を利用するための Devcontainer テンプレート。 [Claude Codeディレクトリへ移動](https://github.com/ksp-kitam/devcontainer_template/tree/main/Claude%20Code)
-*   **`Gemini CLI/`**: Gemini CLI を利用するための Devcontainer テンプレート。[Gemini CLIディレクトリへ移動](https://github.com/ksp-kitam/devcontainer_template/tree/main/Gemini%20CLI)
+- **`Claude Code/`：**
+
+    Claude Code を利用するための Devcontainer テンプレート。
+
+    [Claude Codeディレクトリへ移動](https://github.com/ksp-kitam/devcontainer_template/tree/main/Claude%20Code)
+  
+- **`Gemini CLI/`：**
+
+    Gemini CLI を利用するための Devcontainer テンプレート。
+
+    [Gemini CLIディレクトリへ移動](https://github.com/ksp-kitam/devcontainer_template/tree/main/Gemini%20CLI)
 
 ## 🚀 使い方
 
