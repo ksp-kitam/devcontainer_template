@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  app:
+    volumes:
+      # マウント元(ローカル側)を Claude Code の管理情報の保存場所に書き換える
+      # コンテナ側の<ホームディレクトリ>/.claudeに設定される。
+      - /home/kitam/workspace/01_claude:/opt/claude_settings:cached
