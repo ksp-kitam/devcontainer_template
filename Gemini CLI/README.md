@@ -68,7 +68,7 @@ services:
       - <your pc gemini cli data folder>:/opt/gemini_settings:cached
 ```
 ※ 注意: マウント元のディレクトリには以下のファイル/フォルダが含まれていることを前提としています。
-- .gemini / .claude.json (認証情報)
+- .gemini / .gemini.json (認証情報)
 - GEMINI.md (プロジェクトのプロンプト・ガイドライン)
 
 ### 4. コンテナの起動
