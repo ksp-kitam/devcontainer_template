@@ -1,4 +1,4 @@
-# VS Code Devcontainer テンプレート
+# VS Code Devcontainer Claude Code テンプレート
 
 VS CodeのDevcontainerを利用して、任意の開発言語環境を迅速に構築するためのテンプレートです。
 
