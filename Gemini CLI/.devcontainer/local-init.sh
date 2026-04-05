@@ -22,20 +22,42 @@ else
     echo "Node.js のインストールが完了しました: $(node -v)"
 fi
 
-echo "Gemini CLI をインストールしています..."
+echo "Gemini CLI をインストールしています。"
 sudo npm install -g @google/gemini-cli
-source /opt/gemini_settings/.env
 
-echo "Gemini CLI の認証情報をホームディレクトリにリンクしています..."
+echo "Gemini CLI 関連の環境変数を設定しています。"
+if [ -f "/opt/gemini_settings/.env" ]; then
+    source /opt/gemini_settings/.env
+else
+    echo ".env が見つからないためスキップしました。"
+fi
+
+echo ".geminiディレクトリをホームディレクトリにリンクしています。"
+if [ ! -d "/opt/gemini_settings/.gemini" ]; then
+    echo ".gemini が見つからないため新規作成します。"
+    sudo mkdir -p /opt/gemini_settings/.gemini
+fi
+sudo chmod 777 -R /opt/gemini_settings/.gemini
 ln -sf /opt/gemini_settings/.gemini $HOME/.gemini
+
+echo ".gemini.jsonファイルをホームディレクトリにリンクしています。"
+if [ ! -f "/opt/gemini_settings/.gemini.json" ]; then
+    echo ".gemini.json が見つからないため新規作成します。"
+    sudo touch /opt/gemini_settings/.gemini.json
+fi
+sudo chmod 777 /opt/gemini_settings/.gemini.json
 ln -sf /opt/gemini_settings/.gemini.json $HOME/.gemini.json
 
 echo "GEMINI.md を準備しています..."
 if [ ! -f "GEMINI.md" ]; then
-  cp /opt/gemini_settings/GEMINI.md ./GEMINI.md
-  echo "GEMINI.md を作成しました！"
+    if [ -f "/opt/gemini_settings/GEMINI.md" ]; then
+        cp /opt/gemini_settings/GEMINI.md ./GEMINI.md
+        echo "GEMINI.md を作成しました！"
+    else
+        echo "コピー元の GEMINI.md が見つからないためスキップしました。"
+    fi
 else
-  echo "GEMINI.md は既に存在するためスキップしました。"
+    echo "GEMINI.md は既に存在するためスキップしました。"
 fi
 
 echo "セットアップが完了しました！"
