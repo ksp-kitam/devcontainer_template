@@ -14,7 +14,7 @@
 
     個人の AI ツール設定やボリュームマウント。
 
-## 📁 ディレクトリ構成
+## ディレクトリ構成
 
 - **`Claude Code/`：**
 
@@ -28,11 +28,11 @@
 
     [=> Gemini CLI ディレクトリへ移動](https://github.com/ksp-kitam/devcontainer_template/tree/main/Gemini%20CLI)
 
-## 🚀 使い方
+## 使い方
 
 各ディレクトリ配下の `README.md` を参照してください。
 
-## 🛠️ 注意事項
+## 注意事項
 
 `docker-compose.local.yml` および `local-init.sh` は、個人固有の情報を扱うため、
 
