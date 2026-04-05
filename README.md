@@ -20,13 +20,13 @@
 
     Claude Code を利用するための Devcontainer テンプレート。
 
-    [Claude Codeディレクトリへ移動](https://github.com/ksp-kitam/devcontainer_template/tree/main/Claude%20Code)
+    [=> Claude Code ディレクトリへ移動](https://github.com/ksp-kitam/devcontainer_template/tree/main/Claude%20Code)
   
 - **`Gemini CLI/`：**
 
     Gemini CLI を利用するための Devcontainer テンプレート。
 
-    [Gemini CLIディレクトリへ移動](https://github.com/ksp-kitam/devcontainer_template/tree/main/Gemini%20CLI)
+    [=> Gemini CLI ディレクトリへ移動](https://github.com/ksp-kitam/devcontainer_template/tree/main/Gemini%20CLI)
 
 ## 🚀 使い方
 
