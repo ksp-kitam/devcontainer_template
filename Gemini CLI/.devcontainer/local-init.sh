@@ -17,12 +17,13 @@ else
     # 存在しない場合はインストール処理を実行
     echo "Node.js が見つかりません。インストールします..."
     sudo apt-get update
-    sudo apt-get install nodejs
+    sudo apt-get install -y nodejs
+    sudo apt-get install -y npm
     echo "Node.js のインストールが完了しました: $(node -v)"
 fi
 
 echo "Gemini CLI をインストールしています..."
-npm install -g @google/gemini-cli
+sudo npm install -g @google/gemini-cli
 source /opt/gemini_settings/.env
 
 echo "Gemini CLI の認証情報をホームディレクトリにリンクしています..."

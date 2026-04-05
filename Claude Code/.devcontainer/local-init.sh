@@ -18,12 +18,13 @@ else
     # 存在しない場合はインストール処理を実行
     echo "Node.js が見つかりません。インストールします..."
     sudo apt-get update
-    sudo apt-get install nodejs
+    sudo apt-get install -y nodejs
+    sudo apt-get install -y npm
     echo "Node.js のインストールが完了しました: $(node -v)"
 fi
 
 echo "Claude Codeをインストールしています..."
-npm install -g @anthropic-ai/claude-code
+sudo npm install -g @anthropic-ai/claude-code
 
 echo "Claude Codeの認証情報をホームディレクトリにリンクしています..."
 ln -sf /opt/claude_settings/.claude $HOME/.claude
