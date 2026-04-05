@@ -1,19 +1,19 @@
-# VS Code Devcontainer テンプレート
+# VS Code Devcontainer Gemini CLI テンプレート
 
 VS CodeのDevcontainerを利用して、任意の開発言語環境を迅速に構築するためのテンプレートです。
 
-本テンプレートでは、AIコーディングアシスタント「[Claude Code](https://github.com/anthropics/claude-code)」などの個人的な開発支援ツールは、
+本テンプレートでは、AIコーディングアシスタント「[Gemini CLI](https://github.com/google-gemini/gemini-cli)」などの個人的な開発支援ツールは、
 
 チームで共有する共通環境には含めない方針としています。
 
-Claude Codeのインストールや認証情報の連携は、開発者個人のローカル環境固有の設定（`local-init.sh` および `docker-compose.local.yml`）でのみ行い、
+Gemini CLIのインストールや認証情報の連携は、開発者個人のローカル環境固有の設定（`local-init.sh` および `docker-compose.local.yml`）でのみ行い、
 
 チームのリポジトリをクリーンに保ちます。
 
 ## 🌟 特徴
 
 * **柔軟な開発環境の選択**: デフォルトは汎用的な Debian ベースイメージですが、設定ファイルのコメントを切り替えるだけで Java, Python, Node.js などの環境へ簡単に変更可能です。
-* **ローカル・オーバーライド設計**: `docker-compose.local.yml` や `local-init.sh` を用いて、チームの共通環境を汚さずに個人の環境（Claude Codeの導入やボリュームマウントなど）を拡張できます。
+* **ローカル・オーバーライド設計**: `docker-compose.local.yml` や `local-init.sh` を用いて、チームの共通環境を汚さずに個人の環境（Gemini CLIの導入やボリュームマウントなど）を拡張できます。
 
 ## 📁 ディレクトリ構成
 
@@ -24,8 +24,8 @@ Claude Codeのインストールや認証情報の連携は、開発者個人の
  ├── devcontainer.json        # Devcontainerのメイン設定ファイル（チーム共有）
  ├── docker-compose.yml       # 共通のコンテナ構成（ベース / チーム共有）
  ├── init.sh                  # コンテナビルド後の共通初期化スクリプト（チーム共有）
- ├── docker-compose.local.yml # 個人環境用の構成（Claude Code設定等 / ※Git管理外）
- └── local-init.sh            # 個人環境用の初期化スクリプト（Claude Codeインストール等 / ※Git管理外）
+ ├── docker-compose.local.yml # 個人環境用の構成（Gemini CLI設定等 / 個人固有）
+ └── local-init.sh            # 個人環境用の初期化スクリプト（Gemini CLIインストール等 / 個人固有）
 ```
 ※ 利用する場合は、`.gitignore` に `docker-compose.local.yml` と `local-init.sh` を必ず追加してください。
 
@@ -56,22 +56,20 @@ services:
 
 ### 3. 個人用環境のパス修正（Claude Codeを利用する個人のみ）
 
-docker-compose.local.yml を開き、ホスト側の Claude Code 設定ディレクトリのパスを自身の環境に合わせて変更してください。
+docker-compose.local.yml を開き、ホスト側の Gemini CLI 設定ディレクトリのパスを自身の環境に合わせて変更してください。
 
 ```yaml
 # docker-compose.local.yml の修正箇所
 services:
   app:
     volumes:
-      # マウント元(ローカル側)を Claude Code の管理情報の保存場所に書き換える
-      # コンテナ側の<ホームディレクトリ>/.claudeに設定される。
-      - <your pc claude code data folder>:/opt/claude_settings:cached
+      # マウント元(ローカル側)を Gemini CLI の管理情報の保存場所に書き換える
+      # コンテナ側の<ホームディレクトリ>/.geminiに設定される。
+      - <your pc gemini cli data folder>:/opt/gemini_settings:cached
 ```
 ※ 注意: マウント元のディレクトリには以下のファイル/フォルダが含まれていることを前提としています。
-- .claude / .claude.json (認証情報)
-- .mcp.json (MCP設定)
-- lineworks-channel/ (Lineworks連携用：[詳しくはコチラを参照ください](https://github.com/ksp-gikai-ojt/claude-code-lineworks-channel) )
-- CLAUDE.md (プロジェクトのプロンプト・ガイドライン)
+- .gemini / .claude.json (認証情報)
+- GEMINI.md (プロジェクトのプロンプト・ガイドライン)
 
 ### 4. コンテナの起動
 
@@ -93,15 +91,15 @@ services:
 
 - ローカルPCと同じ感覚でコードを編集・保存・実行してください。変更内容はホスト側と同期されます。
 
-### Claude Code の利用（設定済みの場合）
+### Gemini CLI の利用（設定済みの場合）
 
-- local-init.sh でのセットアップが完了している場合、ターミナルからすぐにClaude Codeを呼び出せます。
+- local-init.sh でのセットアップが完了している場合、ターミナルからすぐに Gemini CLI を呼び出せます。
 
 - コンテナ内のターミナルを開きます。
 
-- 以下のコマンドを実行してClaude Codeを起動します。
+- 以下のコマンドを実行して Gemini CLI を起動します。
   ```bash
-  claude
+  gemini
   ```
 
 - ターミナル上で対話型のインターフェースが起動し、コードの解説、生成、リファクタリングなどをAIに依頼できます。
