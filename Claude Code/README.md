@@ -70,7 +70,7 @@ services:
 ※ 注意: マウント元のディレクトリには以下のファイル/フォルダが含まれていることを前提としています。
 - .claude / .claude.json (認証情報)
 - .mcp.json (MCP設定)
-- lineworks-channel/ (Lineworks連携用)
+- lineworks-channel/ (Lineworks連携用：[詳しくはコチラを参照ください](https://github.com/ksp-gikai-ojt/claude-code-lineworks-channel) )
 - CLAUDE.md (プロジェクトのプロンプト・ガイドライン)
 
 ### 4. コンテナの起動
