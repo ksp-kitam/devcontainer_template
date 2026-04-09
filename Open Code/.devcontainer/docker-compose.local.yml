@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  app:
+    volumes:
+      # マウント元(ローカル側)を opencode の管理情報の保存場所に書き換える
+      - /home/kitam/ai-configs/opencode:/opt/opencode_settings:cached

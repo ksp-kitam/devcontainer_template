@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    # 開発用のイメージ(プロジェクトに併せて変更する)
+    image: mcr.microsoft.com/devcontainers/base:debian
+    # Java
+    #image: mcr.microsoft.com/devcontainers/java
+    # python
+    #image: mcr.microsoft.com/devcontainers/python:3
+    # nodejs
+    #image: mcr.microsoft.com/devcontainers/javascript-node
+    network_mode: bridge
+    command: sleep infinity

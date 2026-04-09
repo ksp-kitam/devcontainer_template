@@ -5,4 +5,4 @@ services:
     volumes:
       # マウント元(ローカル側)を Gemini CLI の管理情報の保存場所に書き換える
       # コンテナ側の<ホームディレクトリ>/.geminiに設定される。
-      - /home/mk/ai/gemini:/opt/gemini_settings:cached
+      - /home/kitam/ai-configs/gemini:/opt/gemini_settings:cached

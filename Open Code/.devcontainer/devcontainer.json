@@ -1,0 +1,16 @@
+{
+  "name": "${localWorkspaceFolderBasename}",
+  // ローカル固有の環境を追加したい場合は、docker-compose.local.ymlを作成する事
+  "dockerComposeFile": [
+    "docker-compose.yml",
+    "docker-compose.local.yml" 
+  ],
+  "service": "app",
+  "workspaceFolder": "/workspace/${localWorkspaceFolderBasename}",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace/${localWorkspaceFolderBasename},type=bind,consistency=cached"
+  ],
+  "updateRemoteUserUID": true,
+  // ローカル固有の初期化処理を追加したい場合は、local-init.shを作成する事
+  "postCreateCommand": "bash .devcontainer/init.sh"
+}
