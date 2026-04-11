@@ -28,6 +28,13 @@
 
     [=> Gemini CLI ディレクトリへ移動](https://github.com/ksp-kitam/devcontainer_template/tree/main/Gemini%20CLI)
 
+- **`Open Code/`：**
+
+    Open Code を利用するための Devcontainer テンプレート。
+
+    [=> Open Code ディレクトリへ移動](https://github.com/ksp-kitam/devcontainer_template/tree/main/Open%20Code)
+
+
 ## 使い方
 
 各ディレクトリ配下の `README.md` を参照してください。
