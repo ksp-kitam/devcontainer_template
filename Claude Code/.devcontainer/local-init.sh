@@ -1,7 +1,18 @@
 #!/bin/bash
 
+# =================================
+# 事前準備
+# =================================
 # エラーが発生したらそこで処理を停止する
 set -e
+# プロジェクトルートのディレクトリを設定
+project_root_dir=$PWD
+
+# =================================
+# 個人用の初期設定処理
+# =================================
+
+# ---- 何かあればここに記載する ----
 
 # =================================
 # claude codeの設定
@@ -11,6 +22,10 @@ set -e
 #  4. LineWorks channelプラグインの追加
 #  5. CLAUDE.md の作成
 # =================================
+# 処理前にプロジェクトルートに移動しておく
+cd "$project_root_dir"
+
+# node jsがインストールされていなければインストール
 echo "node jsをインストールしています。"
 if command -v node >/dev/null 2>&1; then
     echo "Node.js は既にインストールされています: $(node -v)"
@@ -23,9 +38,11 @@ else
     echo "Node.js のインストールが完了しました: $(node -v)"
 fi
 
+# Claude Codeをインストール
 echo "Claude Code をインストールしています。"
 sudo npm install -g @anthropic-ai/claude-code
 
+# Claude Code関連の環境変数があれば設定する
 echo "Claude Code 関連の環境変数を設定しています。"
 if [ -f "/opt/claude_settings/.env" ]; then
     source /opt/claude_settings/.env
@@ -33,6 +50,7 @@ else
     echo ".env が見つからないためスキップしました。"
 fi
 
+# Claude Codeの各種設定用のフォルダがあればホームディレクトリ配下にリンクする
 echo ".claude ディレクトリをホームディレクトリにリンクしています。"
 if [ ! -d "/opt/claude_settings/.claude" ]; then
     echo ".claude が見つからないため新規作成します。"
@@ -49,14 +67,7 @@ fi
 sudo chmod 777 /opt/claude_settings/.claude.json
 ln -sf /opt/claude_settings/.claude.json $HOME/.claude.json
 
-echo ".mcp.json ファイルをワークスペースにリンクしています。"
-if [ -f "/opt/claude_settings/.mcp.json" ]; then
-    sudo chmod 777 /opt/claude_settings/.mcp.json
-    ln -sf /opt/claude_settings/.mcp.json .mcp.json
-else
-    echo ".mcp.json が見つからないためスキップしました。"
-fi
-
+# Lineworks channelのインストール
 echo "Claude CodeのLineworks channelを追加しています。"
 if [ -d "/opt/claude_settings/lineworks-channel" ]; then
     sudo cp -r /opt/claude_settings/lineworks-channel /lineworks-channel
@@ -71,6 +82,7 @@ else
     echo "lineworks-channel ディレクトリが見つからないためスキップしました。"
 fi
 
+# プロジェクトルートにCLAUDE.mdを作成する。
 echo "CLAUDE.md を準備しています。"
 if [ ! -f "CLAUDE.md" ]; then
     if [ -f "/opt/claude_settings/CLAUDE.md" ]; then

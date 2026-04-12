@@ -1,7 +1,20 @@
 #!/bin/bash
 
+# =================================
+# 事前準備
+# =================================
 # エラーが発生したらそこで処理を停止する
 set -e
+# プロジェクトルートのディレクトリを設定
+project_root_dir=$PWD
+
+
+# =================================
+# 個人用の初期設定処理
+# =================================
+
+# ---- 何かあればここに記載する ----
+
 
 # =================================
 # Gemini CLI の設定
@@ -10,6 +23,10 @@ set -e
 #  3. コンテナにマウントされている Gemini CLI の情報を .gemini ディレクトリにリンクする
 #  4. GEMINI.md の作成
 # =================================
+# 処理前にプロジェクトルートに移動しておく
+cd "$project_root_dir"
+
+# node jsがインストールされていなければインストール
 echo "node jsをインストールしています..."
 if command -v node >/dev/null 2>&1; then
     echo "Node.js は既にインストールされています: $(node -v)"
@@ -22,9 +39,11 @@ else
     echo "Node.js のインストールが完了しました: $(node -v)"
 fi
 
+# Gemini CLIをインストール
 echo "Gemini CLI をインストールしています。"
 sudo npm install -g @google/gemini-cli
 
+# Gemini CLI関連の環境変数があれば設定する
 echo "Gemini CLI 関連の環境変数を設定しています。"
 if [ -f "/opt/gemini_settings/.env" ]; then
     source /opt/gemini_settings/.env
@@ -32,6 +51,7 @@ else
     echo ".env が見つからないためスキップしました。"
 fi
 
+# Gemini CLIの各種設定用のフォルダがあればホームディレクトリ配下にリンクする
 echo ".geminiディレクトリをホームディレクトリにリンクしています。"
 if [ ! -d "/opt/gemini_settings/.gemini" ]; then
     echo ".gemini が見つからないため新規作成します。"
@@ -40,14 +60,7 @@ fi
 sudo chmod 777 -R /opt/gemini_settings/.gemini
 ln -sf /opt/gemini_settings/.gemini $HOME/.gemini
 
-echo ".gemini.jsonファイルをホームディレクトリにリンクしています。"
-if [ ! -f "/opt/gemini_settings/.gemini.json" ]; then
-    echo ".gemini.json が見つからないため新規作成します。"
-    sudo touch /opt/gemini_settings/.gemini.json
-fi
-sudo chmod 777 /opt/gemini_settings/.gemini.json
-ln -sf /opt/gemini_settings/.gemini.json $HOME/.gemini.json
-
+# プロジェクトルートにGEMINI.mdを作成する。
 echo "GEMINI.md を準備しています..."
 if [ ! -f "GEMINI.md" ]; then
     if [ -f "/opt/gemini_settings/GEMINI.md" ]; then
